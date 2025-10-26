@@ -60,14 +60,15 @@ int main() {
             if (strcmp(opcode, "WORD") == 0) {
                 printf("T^%08X^%08X\n", addr, atoi(operand));
             } else if (strcmp(opcode, "BYTE") == 0) {
+                int len = strlen(operand);
                 if (operand[0] == 'C') {
                     printf("T^%08X^", addr);
-                    for (int i = 2; operand[i] != '\'' && operand[i] != '\0'; i++)
+                    for (int i = 2; i < len - 1; i++)
                         printf("%02X", operand[i]);
                     printf("\n");
                 } else if (operand[0] == 'X') {
                     printf("T^%08X^", addr);
-                    for (int i = 2; operand[i] != '\'' && operand[i] != '\0'; i++)
+                    for (int i = 2; i < len - 1; i++)
                         printf("%c", operand[i]);
                     printf("\n");
                 }
